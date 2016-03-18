@@ -4,8 +4,8 @@ Typescript, React, Redux, Nodejs, Mongodb starter project
 # Workflow for creating a new resource
 
 ## :file_folder: Shared
-- Add api methods interface to src/shared/api.d.ts
-- Add model properties interface to src/shared/models.d.ts
+- Add api interface to src/shared/api.d.ts
+- Add model interface to src/shared/models.d.ts
 
 ## :file_folder: Server 
 ##### :heavy_check_mark: Model
@@ -23,7 +23,7 @@ Typescript, React, Redux, Nodejs, Mongodb starter project
 
 ## :file_folder: Client
 ##### :heavy_check_mark: Api
-- Create Api class that implements the interface you added in api.d.ts
+- Create Api class that implements the api interface you added in api.d.ts
 	
 ##### :heavy_check_mark: Constants
 - Add resource actions constants

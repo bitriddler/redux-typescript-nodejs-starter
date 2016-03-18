@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"jsx": "react",
+		"module": "amd",
+    "removeComments": true,
+    "outDir": ".tmp",
+    "allowJs": true
+	},
+	"exclude": [
+		"node_modules",
+		"test"
+	]
+}
