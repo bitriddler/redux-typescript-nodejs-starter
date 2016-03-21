@@ -1,32 +1,25 @@
-// I'm using combineReducers from redux and not redux-immutable because 
-// routing middleware will not understand that
-import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
-import {createHistory} from 'history';
-import {DevTools} from 'src/client/containers/DevTools';
-import { syncHistory, routeReducer } from 'redux-simple-router';
+import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
+import {DevTools} from 'src/client/components/dev/dev-tools.component';
+import {Router, Route, browserHistory} from 'react-router';
+import {syncHistoryWithStore, routerMiddleware, routerReducer} from 'react-router-redux';
 import {reducers} from 'src/client/reducers/index';
-import { isDevEnv } from 'src/client/utils/helpers';
+import {isDevEnv} from 'src/shared/helpers';
 
 export function configureStore(initialState = {}) {
 
-  const history = createHistory();
-
-  const syncHistoryMiddleware = syncHistory(history);
-
-  const middlewares = [syncHistoryMiddleware];
-
+  /// a method to create story
   const finalCreateStore = compose(
-    applyMiddleware(...<any>middlewares),
+    applyMiddleware(routerMiddleware(browserHistory)),
     DevTools.instrument()
   )(createStore)
 
-  reducers['routing'] = routeReducer;
+  reducers['routing'] = routerReducer;
 
   const rootReducer = combineReducers(reducers);
 
   const store = finalCreateStore(rootReducer, initialState);
 
-  syncHistoryMiddleware.listenForReplays(store);
+  const history = syncHistoryWithStore(browserHistory, store);
 
   if (isDevEnv() && (<any>module).hot) {
     // Enable Webpack hot module replacement for reducers

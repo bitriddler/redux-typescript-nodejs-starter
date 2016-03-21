@@ -5,8 +5,8 @@ export function registerActionCreators() {
 
   let observables = [];
 
-  for(let key in kernel.actionCreators) {
-    observables.push(kernel.actionCreators[key].getObservable());
+  for(let key in kernel.actions) {
+    observables.push(kernel.actions[key].getObservable());
   }
 
   Observable.merge(observables)

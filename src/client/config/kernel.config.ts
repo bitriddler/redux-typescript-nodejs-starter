@@ -1,43 +1,24 @@
-import {StoryApi} from 'src/client/api/StoryApi';
-import {PushRouteAction} from "src/client/actions/routes/PushRouteAction";
-import {ReplaceRouteAction} from "src/client/actions/routes/ReplaceRouteAction";
-import {CreateStoryAction} from "src/client/actions/stories/CreateStoryAction";
-import {FetchStoryAction} from "src/client/actions/stories/FetchStoryAction";
-import {FetchStoriesAction} from "src/client/actions/stories/FetchStoriesAction";
-import {ReplaceStoryAction} from "src/client/actions/stories/ReplaceStoryAction";
-import {UpdateStoryAction} from "src/client/actions/stories/UpdateStoryAction";
-import {RemoveStoryAction} from "src/client/actions/stories/RemoveStoryAction";
-import {UnsetStoryAction} from "src/client/actions/stories/UnsetStoryAction";
+import {StoryApi} from 'src/client/api/story/story.api';
+import {LocationActions} from 'src/client/actions/location/location.actions';
+import {StoryActions} from 'src/client/actions/story/story.actions';
 import {Store} from 'redux';
+import {routerActions} from 'react-router-redux';
 
 export function configureKernel(store: Store) {
   // Bind apis
   const storyApi = new StoryApi();
 
-  // Bind routes actions
-  const pushRouteAction = new PushRouteAction(store.getState);
-  const replaceRouteAction = new ReplaceRouteAction(store.getState);
-
-  // Bind story actions
-  const fetchStoryAction = new FetchStoryAction(store.getState, storyApi);
-  const createStoryAction = new CreateStoryAction(store.getState, storyApi);
-  const updateStoryAction = new UpdateStoryAction(store.getState, storyApi);
-  const replaceStoryAction = new ReplaceStoryAction(store.getState, storyApi);
-  const fetchStoriesAction = new FetchStoriesAction(store.getState, storyApi);
-  const removeStoryAction = new RemoveStoryAction(store.getState, storyApi);
-  const unsetStoryAction = new UnsetStoryAction(store.getState);
+  // Bind actions
+  const locationActions = new LocationActions(store.getState, routerActions);
+  const storyActions = new StoryActions(store.getState, storyApi);
 
   return {
     store,
 
     // Bind actions used in our app
-    actionCreators: {
-      // Route actions
-      replaceRouteAction, pushRouteAction,
-      // Story actions
-      fetchStoryAction, createStoryAction, updateStoryAction,
-      replaceStoryAction, fetchStoriesAction, removeStoryAction,
-      unsetStoryAction
+    actions: {
+      locationActions,
+      storyActions
     }
   };
 }

@@ -20,7 +20,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      ENV: JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify('development')
     })
   ],
   recordsPath: path.resolve(path.join(__dirname, 'build/_frontend_records')),

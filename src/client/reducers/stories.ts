@@ -1,66 +1,135 @@
-import {combineReducers} from 'redux-immutablejs';
-import {Map} from 'immutable';
-import {STORY_ACTIONS} from "src/client/constants/ActionTypes";
+import {combineReducers} from 'redux';
+import {STORY_ACTIONS} from 'src/client/constants/actions.constants';
+import {IApiError} from 'src/client/api/base/base.api';
 
-const initialState = Map({
+export interface IStoryState {
+  isUpdating: boolean;
+  isFetching: boolean;
+  id?: string;
+  error?: IApiError;
+}
+
+export interface IStoriesListState {
+  isFetching: boolean;
+  ids: string[];
+  error?: IApiError;
+};
+
+export interface IStoriesState {
+  // Instance used in the details page
+  detailsPage: IStoryState,
+  // Instance used in the create page
+  createPage: IStoryState,
+  // Instance used in the update page
+  updatePage: IStoryState,
+  // List of stories
+  list: IStoriesListState
+};
+
+const storyInitialState: IStoryState = {
+  isUpdating: false,
+  isFetching: false
+};
+
+const listInitialState: IStoriesListState = {
   isFetching: false,
-  isUpdating: false
-});
+  ids: []
+};
 
-// Instances controlled in our app
-const initialInstances = Map({
-  edit: initialState,
-  created: initialState,
-  show: initialState,
-  deleted: initialState
-});
-
-export function instances(state = initialInstances, action) {
-  let updateInstance = (newState) => {
-    return state.updateIn([action.instance], (instance) => instance.merge(newState));
-  }
-
-  switch(action.type) {
+function storyReducer(story: IStoryState, {type, payload}): IStoryState {
+  switch(type) {
     case STORY_ACTIONS.FETCH_REQUEST:
-      return updateInstance({isUpdating: false, isFetching: true});
+      return {
+        isUpdating: false,
+        isFetching: true,
+        id: payload.result
+      };
 
     case STORY_ACTIONS.UPDATE_REQUEST:
     case STORY_ACTIONS.REPLACE_REQUEST:
     case STORY_ACTIONS.CREATE_REQUEST:
-      return updateInstance({ isUpdating: true, isFetching: true });
+      return {
+        isUpdating: true,
+        isFetching: true,
+        id: payload.result
+      };
 
     case STORY_ACTIONS.FETCH_SUCCESS:
     case STORY_ACTIONS.UPDATE_SUCCESS:
     case STORY_ACTIONS.REPLACE_SUCCESS:
     case STORY_ACTIONS.CREATE_SUCCESS:
-      return updateInstance({ isFetching: false, isUpdating: false, result: action.result });
+      return {
+        isUpdating: false,
+        isFetching: false,
+        id: payload.result
+      };
 
     case STORY_ACTIONS.FETCH_FAILURE:
     case STORY_ACTIONS.UPDATE_FAILURE:
     case STORY_ACTIONS.REPLACE_FAILURE:
     case STORY_ACTIONS.CREATE_FAILURE:
-      return updateInstance({ isFetching: false, isUpdating: false, error: action.error });
+      return {
+        isUpdating: false,
+        isFetching: false,
+        error: payload.error
+      }
+
+    case STORY_ACTIONS.RESET:
+      return storyInitialState;
   }
 
+  return story;
+}
+
+export function detailsPage(state: IStoryState = storyInitialState, action): IStoryState {
+  if(action.payload && action.payload.instanceName === 'detailsPage') {
+    return storyReducer(state, action);
+  }
   return state;
 }
 
-export function list(state = initialState, action) {
-  switch (action.type) {
+export function createPage(state: IStoryState = storyInitialState, action): IStoryState {
+  if(action.payload && action.payload.instanceName === 'createPage') {
+    return storyReducer(state, action);
+  }
+  return state;
+}
+
+export function updatePage(state: IStoryState = storyInitialState, action): IStoryState {
+  if(action.payload && action.payload.instanceName === 'updatePage') {
+    return storyReducer(state, action);
+  }
+  return state;
+}
+
+export function list(state: IStoriesListState = listInitialState, {type, payload}): IStoriesListState {
+  switch (type) {
     case STORY_ACTIONS.FETCH_LIST_REQUEST:
-      return state.merge({ isFetching: true });
+      return {
+        isFetching: true,
+        ids: state.ids
+      };
 
     case STORY_ACTIONS.FETCH_LIST_SUCCESS:
-      return state.merge({ isFetching: false, result: action.result });
+      return {
+        isFetching: false,
+        ids: payload.result
+      };
 
     case STORY_ACTIONS.FETCH_LIST_FAILURE:
-      return state.merge({ isFetching: false, id: null });
+      return {
+        isFetching: false,
+        ids: [],
+        error: payload.error
+      }
   }
 
   return state;
 }
 
 export const storiesReducer = combineReducers({
-  instances,
+  detailsPage,
+  createPage,
+  updatePage,
   list
 });

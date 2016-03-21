@@ -1,17 +1,37 @@
-import {fromJS, Map} from 'immutable';
-import {ENTITIES_ACTIONS} from "src/client/constants/ActionTypes";
+import {IStory} from 'src/shared/models';
+import {ENTITIES_ACTIONS} from 'src/client/constants/actions.constants';
+import {merge} from 'src/shared/helpers';
 
-const initialState = fromJS({
-  users: {},
-  stories: {}
-});
+export interface IEntitiesState {
+	stories: { [id: string]: IStory }
+}
 
-function entities(state: Map<string, any> = initialState, action) {
-  if(action.type === ENTITIES_ACTIONS.SAVE) {
-    return state.mergeDeep(action.entities);
+const initialState: IEntitiesState = {
+	stories: {}
+};
+
+function entities(state: IEntitiesState = initialState, {type, payload}): IEntitiesState {
+	// Save documents to entities
+  if(type === ENTITIES_ACTIONS.SAVE) {
+  	let newState = merge({}, state);
+
+  	for(let entityName in state) {
+  		if(payload.entities[entityName]) {
+  			newState[entityName] = merge(state[entityName], payload.entities[entityName]);
+  		}
+  	}
+
+  	return newState;
   }
-  else if(action.type === ENTITIES_ACTIONS.REMOVE) {
-  	return state.removeIn([action.entityName, action.id]);
+  // Remove document from specified entity
+  else if(type === ENTITIES_ACTIONS.REMOVE) {
+  	let newState = merge({}, state);
+
+  	if(newState[payload.entityName] && newState[payload.entityName][payload.id]) {
+  		delete newState[payload.entityName][payload.id];
+  	}
+
+  	return newState;
   }
 
   return state;

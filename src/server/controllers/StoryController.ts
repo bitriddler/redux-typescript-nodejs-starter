@@ -23,6 +23,7 @@ export class StoryController extends BaseController implements IStoryApi {
   }
 
   all(req, res, next) {
+    // next(new Error("THIS IS A WEIRD ERROR"));
     this.storyRepository.all()
       .onFulfill((stories) => {
         res.json({result: stories, statusCode: 200});
