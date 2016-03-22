@@ -19,7 +19,7 @@ interface IState {
   description?: string;
 }
 
-export class StoryForm extends React.Component<IProps, IState> {
+export class StoryFormComponent extends React.Component<IProps, IState> {
 
   componentWillMount() {
     this.setInitialState();

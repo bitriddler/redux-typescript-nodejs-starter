@@ -1,4 +1,4 @@
-import {BaseApi} from 'client/api/base/base.api';
+import {BaseApi} from 'client/api/base/base-api';
 import {Schema, arrayOf} from 'normalizr';
 import {IStory} from 'shared/models';
 import {IStoryApi} from 'shared/api';

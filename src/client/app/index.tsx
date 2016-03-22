@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import RootContainer from 'client/containers/root.container';
+import RootContainer from 'client/containers/root-container';
 import {registerActionCreators} from 'client/actions/register';
-import {configureRoutes} from 'client/config/routes.config';
-import {configureStore} from 'client/config/store.config';
-import {configureKernel} from 'client/config/kernel.config';
-import {configureMaterialUi} from 'client/config/material.config';
+import {configureRoutes} from 'client/config/routes-config';
+import {configureStore} from 'client/config/store-config';
+import {configureKernel} from 'client/config/kernel-config';
+import {configureMaterialUi} from 'client/config/material-config';
 
 configureMaterialUi();
 

@@ -1,5 +1,5 @@
-import {StoryRepository} from 'server/models/story/StoryRepository';
-import {BaseController} from 'server/controllers/BaseController';
+import {StoryRepository} from 'server/models/story/story-repository';
+import {BaseController} from 'server/controllers/base-controller';
 import {ValidationError, ModelNotFoundError} from 'server/errors';
 import {IStoryApi} from 'shared/api';
 import * as validator from "validator";

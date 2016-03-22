@@ -3,11 +3,11 @@ import * as bodyParser from 'body-parser';
 import * as path from 'path';
 import * as http from 'http';
 import {Mongoose} from 'mongoose';
-import {configureMongoose} from 'server/config/mongoose.config';
-import {configureModels} from 'server/config/models.config';
-import {configureKernel} from 'server/config/kernel.config';
-import {configureRouter} from 'server/config/router.config';
-import {ErrorHandler} from 'server/controllers/ErrorHandler';
+import {configureMongoose} from 'server/config/mongoose-config';
+import {configureModels} from 'server/config/models-config';
+import {configureKernel} from 'server/config/kernel-config';
+import {configureRouter} from 'server/config/router-config';
+import {ErrorHandler} from 'server/controllers/error-handler';
 
 export const port = 3000;
 

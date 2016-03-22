@@ -11,7 +11,7 @@ interface IProps {
 	story: IStory;
 }
 
-export class StoryDetails extends React.Component<IProps, any> {
+export class StoryDetailsComponent extends React.Component<IProps, any> {
 
   private renderStory() {
     return (

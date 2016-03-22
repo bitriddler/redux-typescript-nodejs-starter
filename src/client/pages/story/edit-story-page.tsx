@@ -1,18 +1,18 @@
 import * as React from "react";
 import {connect} from 'react-redux';
 import {kernel} from 'client/app/index';
-import {ApiError} from 'client/components/errors/api-error.component';
-import {StoryForm} from 'client/components/story/story-form.component';
-import {StoryActions} from 'client/actions/story/story.actions';
+import {ApiErrorComponent} from 'client/components/errors/api-error-component';
+import {StoryFormComponent} from 'client/components/story/story-form-component';
+import {StoryActions} from 'client/actions/story/story-actions';
 import {RouteActions} from 'react-router-redux';
 import {CircularProgress} from 'material-ui';
-import {IApiError} from 'client/api/base/base.api';
+import {IApiErrorComponent} from 'client/api/base/base-api';
 import {IState} from 'client/reducers/state';
 import {IStory} from 'shared/models';
 
 interface IProps extends React.Props<EditStoryPage> {
   params: {id?};
-  error: IApiError;
+  error: IApiErrorComponent;
   story: IStory;
   isFetching: boolean;
   isUpdating: boolean;
@@ -35,13 +35,13 @@ export class EditStoryPage extends React.Component<IProps, any> {
   render() {
     let result;
     if(this.props.error) {
-      result = <ApiError error={this.props.error} />
+      result = <ApiErrorComponent error={this.props.error} />
     } else if(this.props.isUpdating || this.props.isFetching) {
       result = <CircularProgress />;
     } else {
       result = (
         <div>
-          <StoryForm
+          <StoryFormComponent
             isFetching={this.props.isFetching} 
             isUpdating={this.props.isUpdating} 
             onSave={(data) => this.saveStory(data)} 

@@ -2,24 +2,24 @@ import * as React from "react";
 import {connect} from 'react-redux';
 import {CircularProgress} from 'material-ui';
 import {kernel} from 'client/app/index';
-import {ApiError} from 'client/components/errors/api-error.component';
-import {StoryDetails} from 'client/components/story/story-details.component';
-import {StoryActions} from 'client/actions/story/story.actions';
+import {ApiErrorComponent} from 'client/components/errors/api-error-component';
+import {StoryDetailsComponent} from 'client/components/story/story-details-component';
+import {StoryActions} from 'client/actions/story/story-actions';
 import {RouteActions} from 'react-router-redux';
-import {IApiError} from 'client/api/base/base.api';
+import {IApiErrorComponent} from 'client/api/base/base-api';
 import {IState} from 'client/reducers/state';
 import {IStory} from 'shared/models';
 
-interface IProps extends React.Props<StoryDetailsPage> {
+interface IProps extends React.Props<StoryDetailsComponentPage> {
   params: {id?};
-  error: IApiError;
+  error: IApiErrorComponent;
   story: IStory;
   isFetching: boolean;
   isUpdating: boolean;
   storyActions: StoryActions;
 }
 
-export class StoryDetailsPage extends React.Component<IProps, any> {
+export class StoryDetailsComponentPage extends React.Component<IProps, any> {
 
   componentWillMount() {
     this.props.storyActions.findById('detailsPage', this.props.params.id);
@@ -31,12 +31,12 @@ export class StoryDetailsPage extends React.Component<IProps, any> {
   render() {
     let result;
     if(this.props.error) {
-      result = <ApiError error={this.props.error} />
+      result = <ApiErrorComponent error={this.props.error} />
     } else if(this.props.isUpdating || this.props.isFetching) {
       result = <CircularProgress />;
     } else {
       result = (
-        <StoryDetails
+        <StoryDetailsComponent
           story={this.props.story} />
       );
     }
@@ -67,4 +67,4 @@ function mapDispatchToProps() {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StoryDetailsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(StoryDetailsComponentPage);

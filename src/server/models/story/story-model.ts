@@ -1,6 +1,6 @@
 import {Schema, Model, Mongoose} from 'mongoose';
-import {timestampsPlugin} from 'server/plugins/timestamps.plugin';
-import {promisifyPlugin} from 'server/plugins/promisify.plugin';
+import {timestampsPlugin} from 'server/plugins/timestamps-plugin';
+import {promisifyPlugin} from 'server/plugins/promisify-plugin';
 import {IStory} from 'shared/models';
 import {BaseDocument} from 'server/models/base.d';
 

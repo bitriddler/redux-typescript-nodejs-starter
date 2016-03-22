@@ -1,5 +1,5 @@
 import {Subject} from 'rx';
-import {ENTITIES_ACTIONS} from 'client/constants/actions.constants';
+import {ENTITIES_ACTIONS} from 'client/constants/actions-constants';
 import {IState} from 'client/reducers/state';
 
 export abstract class BaseActions {

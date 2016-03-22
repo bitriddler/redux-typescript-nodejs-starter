@@ -1,5 +1,5 @@
 import {IStory} from 'shared/models';
-import {ENTITIES_ACTIONS} from 'client/constants/actions.constants';
+import {ENTITIES_ACTIONS} from 'client/constants/actions-constants';
 import {merge} from 'shared/helpers';
 
 export interface IEntitiesState {

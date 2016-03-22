@@ -1,6 +1,6 @@
-import {BaseActions} from 'client/actions/base/base.actions';
-import {STORY_ACTIONS} from 'client/constants/actions.constants';
-import {StoryApi} from 'client/api/story/story.api';
+import {BaseActions} from 'client/actions/base/base-actions';
+import {STORY_ACTIONS} from 'client/constants/actions-constants';
+import {StoryApi} from 'client/api/story/story-api';
 
 export class StoryActions extends BaseActions {
   constructor(getState, public storyApi: StoryApi) {

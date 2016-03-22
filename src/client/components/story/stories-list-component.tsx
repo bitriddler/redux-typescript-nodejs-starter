@@ -16,7 +16,7 @@ interface IProps {
   deleteStory: Function;
 }
 
-export class StoriesList extends React.Component<IProps, any> {
+export class StoriesListComponent extends React.Component<IProps, any> {
 
   getTableRows() {
     return this.props.stories.map((story) => (

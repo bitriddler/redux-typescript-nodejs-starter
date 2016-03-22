@@ -3,7 +3,7 @@ import request = require('browser-request');
 import {Subject, ISubject} from 'rx';
 import {IResponseSuccess, IResponseError} from 'shared/response';
 
-export interface IApiError extends IResponseError {
+export interface IApiErrorComponent extends IResponseError {
 }
 
 export interface IApiSuccess {

@@ -1,6 +1,6 @@
-import {StoryApi} from 'client/api/story/story.api';
-import {LocationActions} from 'client/actions/location/location.actions';
-import {StoryActions} from 'client/actions/story/story.actions';
+import {StoryApi} from 'client/api/story/story-api';
+import {LocationActions} from 'client/actions/location/location-actions';
+import {StoryActions} from 'client/actions/story/story-actions';
 import {Store} from 'redux';
 import {routerActions} from 'react-router-redux';
 

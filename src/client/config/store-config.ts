@@ -1,5 +1,5 @@
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
-import {DevTools} from 'client/components/dev/dev-tools.component';
+import {DevToolsComponent} from 'client/components/dev/dev-tools-component';
 import {Router, Route, browserHistory} from 'react-router';
 import {syncHistoryWithStore, routerMiddleware, routerReducer} from 'react-router-redux';
 import {reducers} from 'client/reducers/index';
@@ -10,7 +10,7 @@ export function configureStore(initialState = {}) {
   /// a method to create story
   const finalCreateStore = compose(
     applyMiddleware(routerMiddleware(browserHistory)),
-    DevTools.instrument()
+    DevToolsComponent.instrument()
   )(createStore)
 
   reducers['routing'] = routerReducer;

@@ -1,5 +1,5 @@
-import {StoryController} from 'server/controllers/StoryController';
-import {StoryRepository} from 'server/models/story/StoryRepository';
+import {StoryController} from 'server/controllers/story-controller';
+import {StoryRepository} from 'server/models/story/story-repository';
 
 export function configureKernel() {
 

@@ -2,9 +2,9 @@ import * as React from "react";
 import { connect } from "react-redux";
 import {kernel} from 'client/app/index';
 import {AppBar, LeftNav, MenuItem, IconButton, Icons} from 'material-ui';
-import {LocationActions} from 'client/actions/location/location.actions';
+import {LocationActions} from 'client/actions/location/location-actions';
 
-interface IProps extends React.Props<App> {
+interface IProps extends React.Props<AppContainer> {
 	locationActions: LocationActions;
 }
 
@@ -12,7 +12,7 @@ interface IState {
 	openLeftNav: boolean;
 }
 
-export class App extends React.Component<IProps, IState> {
+export class AppContainer extends React.Component<IProps, IState> {
 
 	componentWillMount() {
 		this.setInitialState();
@@ -63,4 +63,4 @@ function mapDispatchToProps() {
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(AppContainer);

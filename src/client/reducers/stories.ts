@@ -1,18 +1,18 @@
 import {combineReducers} from 'redux';
-import {STORY_ACTIONS} from 'client/constants/actions.constants';
-import {IApiError} from 'client/api/base/base.api';
+import {STORY_ACTIONS} from 'client/constants/actions-constants';
+import {IApiErrorComponent} from 'client/api/base/base-api';
 
 export interface IStoryState {
   isUpdating: boolean;
   isFetching: boolean;
   id?: string;
-  error?: IApiError;
+  error?: IApiErrorComponent;
 }
 
-export interface IStoriesListState {
+export interface IStoriesListComponentState {
   isFetching: boolean;
   ids: string[];
-  error?: IApiError;
+  error?: IApiErrorComponent;
 };
 
 export interface IStoriesState {
@@ -23,7 +23,7 @@ export interface IStoriesState {
   // Instance used in the update page
   updatePage: IStoryState,
   // List of stories
-  list: IStoriesListState
+  list: IStoriesListComponentState
 };
 
 const storyInitialState: IStoryState = {
@@ -31,7 +31,7 @@ const storyInitialState: IStoryState = {
   isFetching: false
 };
 
-const listInitialState: IStoriesListState = {
+const listInitialState: IStoriesListComponentState = {
   isFetching: false,
   ids: []
 };
@@ -102,7 +102,7 @@ export function updatePage(state: IStoryState = storyInitialState, action): ISto
   return state;
 }
 
-export function list(state: IStoriesListState = listInitialState, {type, payload}): IStoriesListState {
+export function list(state: IStoriesListComponentState = listInitialState, {type, payload}): IStoriesListComponentState {
   switch (type) {
     case STORY_ACTIONS.FETCH_LIST_REQUEST:
       return {

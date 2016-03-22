@@ -1,5 +1,5 @@
 import {Promise} from 'mongoose';
-import {StoryModel, IStoryDocument} from 'server/models/story/StoryModel';
+import {StoryModel, IStoryDocument} from 'server/models/story/story-model';
 
 export class StoryRepository {
 
