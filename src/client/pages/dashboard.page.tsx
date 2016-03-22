@@ -8,9 +8,11 @@ interface IProps {
 export class DashboardPage extends React.Component<IProps, any> {
   render() {
     return (
-      <Paper style={{'marginTop': 20, 'padding': '20'}} zDepth={3}>
-      	<h1>Hello world</h1>
-      </Paper>
+    	<div className="dashboard-page">
+	      <Paper style={{'marginTop': 20, 'padding': '20'}} zDepth={3}>
+	      	<h1>Hello world</h1>
+	      </Paper>
+      </div>
     );
   }
 }

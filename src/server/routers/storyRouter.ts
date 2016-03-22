@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {StoryController} from 'src/server/controllers/StoryController';
+import {StoryController} from 'server/controllers/StoryController';
 
 export function configureStoryRouter(storyController: StoryController) {
   const storyRouter = Router();

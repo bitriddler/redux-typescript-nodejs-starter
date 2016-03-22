@@ -1,14 +1,14 @@
 import * as React from "react";
 import {connect} from 'react-redux';
 import {CircularProgress} from 'material-ui';
-import {kernel} from 'src/client/index';
-import {ApiErrorDialog} from 'src/client/components/errors/api-error-dialog.component';
-import {StoriesList} from 'src/client/components/story/stories-list.component';
-import {StoryActions} from 'src/client/actions/story/story.actions';
-import {LocationActions} from 'src/client/actions/location/location.actions';
-import {IApiError} from 'src/client/api/base/base.api';
-import {IState} from 'src/client/reducers/state';
-import {IStory} from 'src/shared/models';
+import {kernel} from 'client/app/index';
+import {ApiError} from 'client/components/errors/api-error.component';
+import {StoriesList} from 'client/components/story/stories-list.component';
+import {StoryActions} from 'client/actions/story/story.actions';
+import {LocationActions} from 'client/actions/location/location.actions';
+import {IApiError} from 'client/api/base/base.api';
+import {IState} from 'client/reducers/state';
+import {IStory} from 'shared/models';
 
 interface IProps extends React.Props<ListStoriesPage> {
   isFetching: boolean;
@@ -46,7 +46,7 @@ export class ListStoriesPage extends React.Component<IProps, any> {
   render() {
     let result;
     if(this.props.error) {
-      result = <ApiErrorDialog error={this.props.error} />
+      result = <ApiError error={this.props.error} />
     } else if(this.props.isFetching) {
       result = <CircularProgress />;
     } else {
@@ -60,7 +60,7 @@ export class ListStoriesPage extends React.Component<IProps, any> {
       );
     }
     return (
-      <div style={{padding: "20px 0px"}}>
+      <div className="list-stories-page">
         {result}
       </div>
     )

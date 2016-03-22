@@ -5,7 +5,7 @@ import {
   CircularProgress,
   TextField, RaisedButton,
   Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui';
-import {IStory} from 'src/shared/models';
+import {IStory} from 'shared/models';
 
 interface IProps {
   isUpdating?: boolean;
@@ -57,7 +57,7 @@ export class StoryForm extends React.Component<IProps, IState> {
       return <CircularProgress />
     }
     return (
-      <div>
+      <div className="story-form-component">
       	<Paper>
       		<Toolbar>
             <ToolbarGroup float="left">

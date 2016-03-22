@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Provider} from "react-redux";
-import {DevTools} from 'src/client/components/dev/dev-tools.component';
-import {isDevEnv} from "src/shared/helpers";
+import {DevTools} from 'client/components/dev/dev-tools.component';
+import {isDevEnv} from "shared/helpers";
 
 interface IProps {
   store: any;

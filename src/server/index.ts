@@ -3,11 +3,11 @@ import * as bodyParser from 'body-parser';
 import * as path from 'path';
 import * as http from 'http';
 import {Mongoose} from 'mongoose';
-import {configureMongoose} from 'src/server/config/mongoose.config';
-import {configureModels} from 'src/server/config/models.config';
-import {configureKernel} from 'src/server/config/kernel.config';
-import {configureRouter} from 'src/server/config/router.config';
-import {ErrorHandler} from 'src/server/controllers/ErrorHandler';
+import {configureMongoose} from 'server/config/mongoose.config';
+import {configureModels} from 'server/config/models.config';
+import {configureKernel} from 'server/config/kernel.config';
+import {configureRouter} from 'server/config/router.config';
+import {ErrorHandler} from 'server/controllers/ErrorHandler';
 
 export const port = 3000;
 
@@ -47,7 +47,7 @@ export function serve(middlewares = []) {
   app.use(errorHandler.response.bind(errorHandler));
 
   app.get('/*', function(req, res, next) {
-    return res.sendFile(path.join(__dirname, 'index.html'));
+    return res.sendFile(path.join(__dirname, 'src/client/index.html'));
   });
 
   var server = http.createServer(app);

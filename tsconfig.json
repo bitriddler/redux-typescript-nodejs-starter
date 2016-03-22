@@ -5,6 +5,7 @@
 		"module": "amd",
     "removeComments": true,
     "outDir": ".tmp",
+    "rootDir": "src",
     "allowJs": true
 	},
 	"exclude": [

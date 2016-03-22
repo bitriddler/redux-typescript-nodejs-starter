@@ -1,14 +1,14 @@
 import * as React from "react";
 import {connect} from 'react-redux';
-import {kernel} from 'src/client/index';
-import {ApiErrorDialog} from 'src/client/components/errors/api-error-dialog.component';
-import {StoryForm} from 'src/client/components/story/story-form.component';
-import {StoryActions} from 'src/client/actions/story/story.actions';
+import {kernel} from 'client/app/index';
+import {ApiError} from 'client/components/errors/api-error.component';
+import {StoryForm} from 'client/components/story/story-form.component';
+import {StoryActions} from 'client/actions/story/story.actions';
 import {RouteActions} from 'react-router-redux';
 import {CircularProgress} from 'material-ui';
-import {IApiError} from 'src/client/api/base/base.api';
-import {IState} from 'src/client/reducers/state';
-import {IStory} from 'src/shared/models';
+import {IApiError} from 'client/api/base/base.api';
+import {IState} from 'client/reducers/state';
+import {IStory} from 'shared/models';
 
 interface IProps extends React.Props<EditStoryPage> {
   params: {id?};
@@ -35,7 +35,7 @@ export class EditStoryPage extends React.Component<IProps, any> {
   render() {
     let result;
     if(this.props.error) {
-      result = <ApiErrorDialog error={this.props.error} />
+      result = <ApiError error={this.props.error} />
     } else if(this.props.isUpdating || this.props.isFetching) {
       result = <CircularProgress />;
     } else {
@@ -50,7 +50,7 @@ export class EditStoryPage extends React.Component<IProps, any> {
       );
     }
     return (
-      <div style={{padding: "20px 0px"}}>
+      <div className="edit-story-page">
         {result}
       </div>
     )

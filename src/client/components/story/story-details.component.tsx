@@ -5,7 +5,7 @@ import {
   CircularProgress,
   List, ListItem,
   Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui';
-import {IStory} from 'src/shared/models';
+import {IStory} from 'shared/models';
 
 interface IProps {
 	story: IStory;
@@ -15,7 +15,7 @@ export class StoryDetails extends React.Component<IProps, any> {
 
   private renderStory() {
     return (
-      <div>
+      <div className="story-details-component">
         <Paper>
           <Toolbar>
             <ToolbarGroup float="left">

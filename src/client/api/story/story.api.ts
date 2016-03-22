@@ -1,7 +1,7 @@
-import {BaseApi} from 'src/client/api/base/base.api';
+import {BaseApi} from 'client/api/base/base.api';
 import {Schema, arrayOf} from 'normalizr';
-import {IStory} from 'src/shared/models';
-import {IStoryApi} from 'src/shared/api';
+import {IStory} from 'shared/models';
+import {IStoryApi} from 'shared/api';
 
 export class StoryApi extends BaseApi implements IStoryApi {
 

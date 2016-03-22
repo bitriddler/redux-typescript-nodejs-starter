@@ -2,10 +2,11 @@ import * as React from "react";
 import {
   Paper,
   Divider,
-  RaisedButton,
+  RaisedButton, FloatingActionButton,
   Table, TableHeader, TableRow, TableHeaderColumn, TableRowColumn, TableBody,
   Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui';
-import {IStory} from 'src/shared/models';
+import {IStory} from 'shared/models';
+import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 
 interface IProps {
 	stories: IStory[];
@@ -28,11 +29,11 @@ export class StoriesList extends React.Component<IProps, any> {
           <RaisedButton
             label="Edit"
             onTouchTap={() => this.props.editStory(story)}
-            secondary={true}/>
+            primary={true}/>
           <RaisedButton
             label="Delete"
             onTouchTap={() => this.props.deleteStory(story)}
-            primary={true}/>
+            secondary={true}/>
         </TableRowColumn>
       </TableRow>
     ))
@@ -56,22 +57,23 @@ export class StoriesList extends React.Component<IProps, any> {
 
   render() {
     return (
-      <div>
+      <div className="stories-list-component">
       	<Paper>
       		<Toolbar>
             <ToolbarGroup float="left">
               <ToolbarTitle text="Stories List" />
-            </ToolbarGroup>
-            <ToolbarGroup float="right">
-              <RaisedButton
-                label="Create new story"
-                onTouchTap={() => this.props.createStory()}/>
             </ToolbarGroup>
           </Toolbar>
           <div>
             {this.getTable()}
           </div>
       	</Paper>
+        <FloatingActionButton
+          className="button-floating"
+          mini={false}
+          onTouchTap={() => this.props.createStory()}>
+          <ContentAdd />
+        </FloatingActionButton>
       </div>
     );
   }

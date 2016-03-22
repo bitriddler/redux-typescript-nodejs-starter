@@ -1,14 +1,14 @@
 import * as React from "react";
 import {connect} from 'react-redux';
 import {CircularProgress} from 'material-ui';
-import {kernel} from 'src/client/index';
-import {ApiErrorDialog} from 'src/client/components/errors/api-error-dialog.component';
-import {StoryDetails} from 'src/client/components/story/story-details.component';
-import {StoryActions} from 'src/client/actions/story/story.actions';
+import {kernel} from 'client/app/index';
+import {ApiError} from 'client/components/errors/api-error.component';
+import {StoryDetails} from 'client/components/story/story-details.component';
+import {StoryActions} from 'client/actions/story/story.actions';
 import {RouteActions} from 'react-router-redux';
-import {IApiError} from 'src/client/api/base/base.api';
-import {IState} from 'src/client/reducers/state';
-import {IStory} from 'src/shared/models';
+import {IApiError} from 'client/api/base/base.api';
+import {IState} from 'client/reducers/state';
+import {IStory} from 'shared/models';
 
 interface IProps extends React.Props<StoryDetailsPage> {
   params: {id?};
@@ -31,7 +31,7 @@ export class StoryDetailsPage extends React.Component<IProps, any> {
   render() {
     let result;
     if(this.props.error) {
-      result = <ApiErrorDialog error={this.props.error} />
+      result = <ApiError error={this.props.error} />
     } else if(this.props.isUpdating || this.props.isFetching) {
       result = <CircularProgress />;
     } else {
@@ -41,7 +41,7 @@ export class StoryDetailsPage extends React.Component<IProps, any> {
       );
     }
     return (
-      <div style={{padding: "20px 0px"}}>
+      <div className="story-details-page">
         {result}
       </div>
     )

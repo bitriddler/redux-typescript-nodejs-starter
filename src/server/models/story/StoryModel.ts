@@ -1,8 +1,8 @@
 import {Schema, Model, Mongoose} from 'mongoose';
-import {timestampsPlugin} from 'src/server/plugins/timestamps.plugin';
-import {promisifyPlugin} from 'src/server/plugins/promisify.plugin';
-import {IStory} from 'src/shared/models';
-import {BaseDocument} from 'src/server/models/base.d';
+import {timestampsPlugin} from 'server/plugins/timestamps.plugin';
+import {promisifyPlugin} from 'server/plugins/promisify.plugin';
+import {IStory} from 'shared/models';
+import {BaseDocument} from 'server/models/base.d';
 
 export interface IStoryDocument extends IStory, BaseDocument<IStoryDocument> {
   replaceAttributes(attrs: IStory): void;

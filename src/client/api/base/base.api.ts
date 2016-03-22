@@ -1,7 +1,7 @@
 import { Schema, arrayOf, normalize } from 'normalizr';
 import request = require('browser-request');
 import {Subject, ISubject} from 'rx';
-import {IResponseSuccess, IResponseError} from 'src/shared/response';
+import {IResponseSuccess, IResponseError} from 'shared/response';
 
 export interface IApiError extends IResponseError {
 }

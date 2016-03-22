@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import {kernel} from 'src/client/index';
+import {kernel} from 'client/app/index';
 import {AppBar, LeftNav, MenuItem, IconButton, Icons} from 'material-ui';
-import {LocationActions} from 'src/client/actions/location/location.actions';
+import {LocationActions} from 'client/actions/location/location.actions';
 
 interface IProps extends React.Props<App> {
 	locationActions: LocationActions;
@@ -36,7 +36,7 @@ export class App extends React.Component<IProps, IState> {
 		const {children} = this.props;
 
 		return (
-			<div>
+			<div className="app-container">
 			  <AppBar
 			    title="Starter Project (Typescript, Redux, React, Nodejs)"
 			    onLeftIconButtonTouchTap={this.toggleLeftNav.bind(this)} />
@@ -49,7 +49,9 @@ export class App extends React.Component<IProps, IState> {
 				    iconElementLeft={<IconButton onClick={this.toggleLeftNav.bind(this)}><Icons.NavigationChevronLeft /></IconButton>} />
           <MenuItem onTouchTap={() => this.gotoStories()}>Stories</MenuItem>
         </LeftNav>
-				{children}
+        <div className="app-container__content">
+					{children}
+				</div>
 			</div>
 		);
 	}

@@ -1,5 +1,5 @@
-import {IStoriesState} from 'src/client/reducers/stories';
-import {IEntitiesState} from 'src/client/reducers/entities';
+import {IStoriesState} from 'client/reducers/stories';
+import {IEntitiesState} from 'client/reducers/entities';
 
 export interface IState {
 	entities: IEntitiesState,

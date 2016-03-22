@@ -1,4 +1,4 @@
-import {BaseActions} from 'src/client/actions/base/base.actions';
+import {BaseActions} from 'client/actions/base/base.actions';
 import {RouteActions} from 'react-router-redux';
 
 export class LocationActions extends BaseActions {

@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import {STORY_ACTIONS} from 'src/client/constants/actions.constants';
-import {IApiError} from 'src/client/api/base/base.api';
+import {STORY_ACTIONS} from 'client/constants/actions.constants';
+import {IApiError} from 'client/api/base/base.api';
 
 export interface IStoryState {
   isUpdating: boolean;

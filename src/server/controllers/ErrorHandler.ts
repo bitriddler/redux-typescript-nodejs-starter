@@ -1,7 +1,7 @@
 import {
 	ValidationError, ModelNotFoundError,
-	ForbiddenError, UnauthorizedError} from 'src/server/errors';
-import {IResponseError} from 'src/shared/response';
+	ForbiddenError, UnauthorizedError} from 'server/errors';
+import {IResponseError} from 'shared/response';
 import PrettyError = require('pretty-error');
 
 export class ErrorHandler {

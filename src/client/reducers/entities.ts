@@ -1,6 +1,6 @@
-import {IStory} from 'src/shared/models';
-import {ENTITIES_ACTIONS} from 'src/client/constants/actions.constants';
-import {merge} from 'src/shared/helpers';
+import {IStory} from 'shared/models';
+import {ENTITIES_ACTIONS} from 'client/constants/actions.constants';
+import {merge} from 'shared/helpers';
 
 export interface IEntitiesState {
 	stories: { [id: string]: IStory }

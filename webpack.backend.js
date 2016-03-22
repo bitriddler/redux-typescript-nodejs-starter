@@ -46,7 +46,7 @@ module.exports = {
     })
   ],
   resolve: {
-    root: __dirname,
+    root: path.join(__dirname, 'src'),
     extensions: ['', '.ts', '.js', '.tsx', '.html'],
   },
   module: {

@@ -5,7 +5,8 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './src/client/index'
+    './src/client/app/index',
+    './src/client/app/stylesheets/main'
   ],
   output: {
     path: path.resolve(path.join(__dirname, 'public')),
@@ -25,12 +26,13 @@ module.exports = {
   ],
   recordsPath: path.resolve(path.join(__dirname, 'build/_frontend_records')),
   resolve: {
-    root: __dirname,
-    extensions: ['', '.ts', '.js', '.tsx', '.html'],
+    root: path.join(__dirname, 'src'),
+    extensions: ['', '.css', '.scss', '.ts', '.js', '.tsx', '.html'],
   },
   module: {
     loaders: [
-      {test: /\.tsx?$/, loaders: ['react-hot', 'ts-loader']}
+      {test: /\.tsx?$/, loaders: ['react-hot', 'ts-loader']},
+      {test: /\.scss$/, loaders: ["style", "css", "sass"]}
     ]
   }
 }

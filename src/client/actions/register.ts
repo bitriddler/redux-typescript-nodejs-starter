@@ -1,5 +1,5 @@
 import {Observable} from 'rx';
-import {kernel} from 'src/client/index';
+import {kernel} from 'client/app/index';
 
 export function registerActionCreators() {
 

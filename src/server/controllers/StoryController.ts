@@ -1,7 +1,7 @@
-import {StoryRepository} from 'src/server/models/story/StoryRepository';
-import {BaseController} from 'src/server/controllers/BaseController';
-import {ValidationError, ModelNotFoundError} from 'src/server/errors';
-import {IStoryApi} from 'src/shared/api';
+import {StoryRepository} from 'server/models/story/StoryRepository';
+import {BaseController} from 'server/controllers/BaseController';
+import {ValidationError, ModelNotFoundError} from 'server/errors';
+import {IStoryApi} from 'shared/api';
 import * as validator from "validator";
 
 export class StoryController extends BaseController implements IStoryApi {
@@ -23,7 +23,6 @@ export class StoryController extends BaseController implements IStoryApi {
   }
 
   all(req, res, next) {
-    // next(new Error("THIS IS A WEIRD ERROR"));
     this.storyRepository.all()
       .onFulfill((stories) => {
         res.json({result: stories, statusCode: 200});

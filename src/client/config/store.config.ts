@@ -1,9 +1,9 @@
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
-import {DevTools} from 'src/client/components/dev/dev-tools.component';
+import {DevTools} from 'client/components/dev/dev-tools.component';
 import {Router, Route, browserHistory} from 'react-router';
 import {syncHistoryWithStore, routerMiddleware, routerReducer} from 'react-router-redux';
-import {reducers} from 'src/client/reducers/index';
-import {isDevEnv} from 'src/shared/helpers';
+import {reducers} from 'client/reducers/index';
+import {isDevEnv} from 'shared/helpers';
 
 export function configureStore(initialState = {}) {
 

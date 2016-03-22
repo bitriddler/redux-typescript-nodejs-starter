@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {configureStoryRouter} from 'src/server/routers/storyRouter';
+import {configureStoryRouter} from 'server/routers/storyRouter';
 
 export function configureRouter(controllers) {
 	let apiRouter = Router();
