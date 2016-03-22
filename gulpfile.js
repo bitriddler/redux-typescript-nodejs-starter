@@ -1,122 +1,36 @@
 var gulp = require('gulp');
-var webpack = require('webpack');
-var path = require('path');
-var fs = require('fs');
-var DeepMerge = require('deep-merge');
-var webpackDevMiddleware = require('webpack-dev-middleware')
-var webpackHotMiddleware = require('webpack-hot-middleware')
-var Express = require('express');
-var frontendConfig = require('./webpack.frontend.js');
-var backendConfig = require('./webpack.backend.js');
-var enableDestroy = require('server-destroy');
-
-function initServerBuildFile() {
-  var dir = './build';
-
-  if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir);
-  }
-  
-  fs.writeFileSync("./build/backend.js", "require('mongoose')");
-}
-
-function onBuild(done) {
-  return function(err, stats) {
-    if(err) {
-      console.log('Error', err);
-    }
-    else {
-      console.log(stats.toString());
-    }
-
-    if(done) {
-      done();
-    }
-  }
-}
-
-function createHotReloadMiddlewares() {
-  var compiler = webpack(frontendConfig);
-
-  return [
-    webpackDevMiddleware(compiler, { 
-      noInfo: true, 
-      publicPath: frontendConfig.output.publicPath }),
-    webpackHotMiddleware(compiler)
-  ];
-}
-
-function watchBackend(middlewares, done) {
-  initServerBuildFile();
-  requireServer([]);
-  
-  var httpServer = null;
-
-  webpack(backendConfig).watch(500, function(err, stats) {
-    if(!httpServer) {
-      httpServer = requireServer(middlewares);
-      done();
-    } else {
-      httpServer.destroy(function() {
-        httpServer = requireServer(middlewares);
-        console.log("Server destroyed");
-      });
-    }
-  });
-}
-
-function cleanRequire(path) {
-  delete require.cache[require.resolve(path)]
-  return require(path);
-}
-
-function requireServer(middlewares) {
-  var backendModule = cleanRequire('./build/backend');
-  if(backendModule.backend && backendModule.backend.serve) {
-    var server = backendModule.backend.serve(middlewares);
-    enableDestroy(server);
-    return server;
-  }
-}
-
-function handleFatalError(err) {
-  throw err;
-}
-
-function handleSoftErrors(err) {
-  throw err;
-}
-
-function handleWarnings(warnings) {
-  console.error(warnings);
-}
+var webpackTasks = require('./gulp/webpack-tasks');
 
 gulp.task('frontend-build', function(done) {
-  webpack(frontendConfig).run(onBuild(done));
+	webpackTasks.buildFrontend(done);
 });
 
 gulp.task('frontend-watch', function(done) {
-  webpack(frontendConfig).watch(1000, onBuild(done));
+	webpackTasks.watchFrontend(done);
 });
 
 gulp.task('backend-build', function(done) {
-  webpack(backendConfig).run(onBuild(done));
+	webpackTasks.buildBackend(done);
 });
 
-gulp.task('serve:backend', function(done) {
-  watchBackend([], done);
+gulp.task('backend-watch', function(done) {
+	webpackTasks.watchBackend(done);
 })
 
 /**
  * Serve with frontend hot reloading
  */
 gulp.task('serve', function(done) {
-  watchBackend(createHotReloadMiddlewares(), done);
+  webpackTasks.serve(done);
 });
 
 /**
  * Serve without hot reloading
  */
-gulp.task('serve:freeze', ['frontend-watch', 'serve:backend']);
+gulp.task('serve:freeze', function(done) {
+  webpackTasks.watchBackend() && webpackTasks.watchFrontend();
+});
 
-gulp.task('build', ['frontend-build', 'backend-build']);
+gulp.task('build', function(done) {
+  webpackTasks.buildBackend() && webpackTasks.buildFrontend();
+});
