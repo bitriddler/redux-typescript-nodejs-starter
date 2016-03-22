@@ -2,17 +2,17 @@ import * as React from "react";
 import {connect} from 'react-redux';
 import {CircularProgress} from 'material-ui';
 import {kernel} from 'client/app/index';
-import {ApiErrorComponent} from 'client/components/errors/api-error-component';
-import {StoriesListComponent} from 'client/components/story/stories-list-component';
+import {ApiErrorComponent} from 'client/components/errors/api-error/api-error-component';
+import {StoriesListComponent} from 'client/components/story/stories-list/stories-list-component';
 import {StoryActions} from 'client/actions/story/story-actions';
 import {LocationActions} from 'client/actions/location/location-actions';
-import {IApiErrorComponent} from 'client/api/base/base-api';
+import {IApiError} from 'client/api/base/base-api';
 import {IState} from 'client/reducers/state';
 import {IStory} from 'shared/models';
 
 interface IProps extends React.Props<ListStoriesPage> {
   isFetching: boolean;
-  error: IApiErrorComponent;
+  error: IApiError;
   stories: IStory[];
   storyActions: StoryActions;
   locationActions: LocationActions;

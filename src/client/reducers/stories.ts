@@ -1,18 +1,18 @@
 import {combineReducers} from 'redux';
 import {STORY_ACTIONS} from 'client/constants/actions-constants';
-import {IApiErrorComponent} from 'client/api/base/base-api';
+import {IApiError} from 'client/api/base/base-api';
 
 export interface IStoryState {
   isUpdating: boolean;
   isFetching: boolean;
   id?: string;
-  error?: IApiErrorComponent;
+  error?: IApiError;
 }
 
 export interface IStoriesListComponentState {
   isFetching: boolean;
   ids: string[];
-  error?: IApiErrorComponent;
+  error?: IApiError;
 };
 
 export interface IStoriesState {

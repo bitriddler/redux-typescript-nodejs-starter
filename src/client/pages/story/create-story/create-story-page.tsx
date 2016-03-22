@@ -2,16 +2,16 @@ import * as React from "react";
 import {connect} from 'react-redux';
 import {CircularProgress} from 'material-ui';
 import {kernel} from 'client/app/index';
-import {ApiErrorComponent} from 'client/components/errors/api-error-component';
-import {StoryFormComponent} from 'client/components/story/story-form-component';
+import {ApiErrorComponent} from 'client/components/errors/api-error/api-error-component';
+import {StoryFormComponent} from 'client/components/story/story-form/story-form-component';
 import {StoryActions} from 'client/actions/story/story-actions';
 import {LocationActions} from 'client/actions/location/location-actions';
-import {IApiErrorComponent} from 'client/api/base/base-api';
+import {IApiError} from 'client/api/base/base-api';
 import {IState} from 'client/reducers/state';
 import {IStory} from 'shared/models';
 
 interface IProps extends React.Props<CreateStoryPage> {
-  error: IApiErrorComponent;
+  error: IApiError;
   story: IStory;
   isUpdating: boolean;
   storyActions: StoryActions;

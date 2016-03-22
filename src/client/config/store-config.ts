@@ -1,5 +1,5 @@
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
-import {DevToolsComponent} from 'client/components/dev/dev-tools-component';
+import {DevToolsComponent} from 'client/components/dev/dev-tools/dev-tools-component';
 import {Router, Route, browserHistory} from 'react-router';
 import {syncHistoryWithStore, routerMiddleware, routerReducer} from 'react-router-redux';
 import {reducers} from 'client/reducers/index';

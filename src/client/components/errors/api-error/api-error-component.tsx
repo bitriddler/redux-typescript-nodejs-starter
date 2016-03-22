@@ -1,9 +1,9 @@
 import * as React from "react";
 import {Paper} from 'material-ui';
-import {IApiErrorComponent} from 'client/api/base/base-api';
+import {IApiError} from 'client/api/base/base-api';
 
 interface IProps {
-  error: IApiErrorComponent;
+  error: IApiError;
 }
 
 export class ApiErrorComponent extends React.Component<IProps, any> {

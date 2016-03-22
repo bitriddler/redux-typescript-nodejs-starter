@@ -1,18 +1,18 @@
 import * as React from "react";
 import {connect} from 'react-redux';
 import {kernel} from 'client/app/index';
-import {ApiErrorComponent} from 'client/components/errors/api-error-component';
-import {StoryFormComponent} from 'client/components/story/story-form-component';
+import {ApiErrorComponent} from 'client/components/errors/api-error/api-error-component';
+import {StoryFormComponent} from 'client/components/story/story-form/story-form-component';
 import {StoryActions} from 'client/actions/story/story-actions';
 import {RouteActions} from 'react-router-redux';
 import {CircularProgress} from 'material-ui';
-import {IApiErrorComponent} from 'client/api/base/base-api';
+import {IApiError} from 'client/api/base/base-api';
 import {IState} from 'client/reducers/state';
 import {IStory} from 'shared/models';
 
 interface IProps extends React.Props<EditStoryPage> {
   params: {id?};
-  error: IApiErrorComponent;
+  error: IApiError;
   story: IStory;
   isFetching: boolean;
   isUpdating: boolean;
